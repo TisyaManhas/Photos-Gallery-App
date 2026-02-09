@@ -74,19 +74,6 @@ struct LoginView: View {
                 .padding(.horizontal, 24)
 
                 // Face ID button (only when supported)
-//                if biometricType == .faceID {
-//                    Button(action: authenticateWithBiometrics) {
-//                        VStack(spacing: 8) {
-//                            Image(systemName: "faceid")
-//                                .font(.system(size: 42))
-//                            Text("Login with Face ID")
-//                                .font(.subheadline)
-//                                .foregroundColor(.secondary)
-//                        }
-//                    }
-//                }
-                
-                // Face ID button (only when supported)
                 #if targetEnvironment(simulator)
                 let showFaceIDButton = true
                 #else
@@ -122,6 +109,14 @@ struct LoginView: View {
                 Spacer()
             }
             .onAppear(perform: checkBiometrics)
+            .onChange(of: isLoggedIn) { oldValue, newValue in
+                // Clear credentials when returning to login screen
+                if oldValue == true && newValue == false {
+                    username = ""
+                    password = ""
+                    errorMessage = nil
+                }
+            }
             .navigationDestination(isPresented: $isLoggedIn) {
                 if let user = loggedInUser {
                     MainTabView(user: user)

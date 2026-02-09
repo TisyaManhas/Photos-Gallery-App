@@ -203,7 +203,7 @@ struct ImageCard: View {
 
                     Text("by \(truncatedPhotographerName(image.user.name))")
                         .font(.caption2.bold()) // Slightly smaller font for dense grid
-                        .foregroundColor(.black)
+                        .foregroundColor(.primary)
                         .lineLimit(1)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity)

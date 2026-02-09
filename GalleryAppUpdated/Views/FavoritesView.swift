@@ -194,7 +194,7 @@ struct FavoriteImageCard: View {
 
                     Text("by \(truncatedName(favorite.photographerName))")
                         .font(.caption2.bold()) // Smaller font for dense grid
-                        .foregroundColor(.black)
+                        .foregroundColor(.primary)
                         .lineLimit(1)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity)
